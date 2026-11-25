@@ -43,6 +43,7 @@ export function Home() {
                   <div className="stone-niche">
                     <span className="niche-spotlight" />
                     <span className="niche-glow" />
+                    <span className="niche-brand">SCENTOLOGY <i>BD</i></span>
                     <span className="niche-index">N° 0{index + 1}</span>
                     <img className="niche-bottle" src={image} alt={`${mood.name} perfume bottle`} />
                     <span className="niche-label">{language === 'bn' ? mood.nameBn : mood.name}</span>

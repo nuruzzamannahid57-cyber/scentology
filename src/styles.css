@@ -142,7 +142,7 @@ img, svg { display: block; }
 /* ---------------- Hero: five basalt niches ---------------- */
 .hero { position: relative; background: #070607; overflow: hidden; }
 .hero-gallery { position: relative; }
-.niche-row { display: flex; width: 100%; height: clamp(560px, 70vh, 720px); }
+.niche-row { display: flex; width: 100%; height: clamp(600px, 76vh, 780px); gap: 9px; padding: 9px 0; background: #000; }
 .hero-niche-column {
   position: relative; flex: 1 1 0%; min-width: 0; display: flex; flex-direction: column;
   transition: flex-grow .65s cubic-bezier(.2,.8,.2,1); outline: none;
@@ -153,8 +153,9 @@ img, svg { display: block; }
   position: relative; flex: 1 1 auto; min-height: 0; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
   background:
-    linear-gradient(180deg, rgba(4,4,5,.48) 0%, rgba(4,4,5,.16) 42%, rgba(4,4,5,.72) 100%),
+    linear-gradient(180deg, rgba(3,3,4,.55) 0%, rgba(3,3,4,.05) 34%, rgba(3,3,4,.5) 78%, rgba(3,3,4,.85) 100%),
     url('/images/basalt-texture.jpg') center center / cover no-repeat;
+  box-shadow: inset 0 0 60px rgba(0,0,0,.65);
   transition: filter .55s ease;
 }
 .stone-niche::before {
@@ -176,7 +177,7 @@ img, svg { display: block; }
 .niche-spotlight {
   position: absolute; top: -8%; left: 50%; width: 130%; height: 104%;
   transform: translateX(-50%); z-index: 1; pointer-events: none;
-  clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%);
+  clip-path: polygon(44% 0, 56% 0, 88% 100%, 12% 100%);
   background:
     radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--niche-color) 42%, transparent), transparent 64%),
     conic-gradient(from 180deg at 50% -6%, transparent 0deg,
@@ -185,25 +186,31 @@ img, svg { display: block; }
       color-mix(in srgb, var(--niche-color) 55%, white 12%) 0%,
       color-mix(in srgb, var(--niche-color) 22%, transparent) 52%,
       transparent 100%);
-  filter: blur(26px); opacity: .5; mix-blend-mode: screen;
+  filter: blur(18px); opacity: .72; mix-blend-mode: screen;
   transition: opacity .5s ease, filter .5s ease;
 }
 .niche-glow {
-  position: absolute; left: 12%; top: 30%; width: 76%; height: 54%; z-index: 1; pointer-events: none;
+  position: absolute; left: 10%; top: 24%; width: 80%; height: 58%; z-index: 1; pointer-events: none;
   background: radial-gradient(ellipse at center, color-mix(in srgb, var(--niche-color) 45%, transparent), transparent 70%);
   filter: blur(34px); opacity: .6; transition: opacity .5s ease, transform .6s ease;
 }
 .hero-niche-column:hover .niche-spotlight,
-.hero-niche-column:focus-visible .niche-spotlight { opacity: 1; filter: blur(16px); }
+.hero-niche-column:focus-visible .niche-spotlight { opacity: 1; filter: blur(11px); }
 .hero-niche-column:hover .niche-glow,
 .hero-niche-column:focus-visible .niche-glow { opacity: 1; transform: scale(1.18); }
 
 .niche-index {
-  position: absolute; top: 27px; left: 27px; z-index: 5;
-  font-size: 9px; font-weight: 600; letter-spacing: .22em; color: rgba(255,255,255,.55);
+  position: absolute; top: 22px; right: 24px; z-index: 5;
+  font-family: var(--serif); font-style: italic; font-size: 13px; letter-spacing: .06em;
+  color: rgba(255,255,255,.5);
 }
+.niche-brand {
+  position: absolute; top: 25px; left: 24px; z-index: 5;
+  font-size: 8px; font-weight: 700; letter-spacing: .24em; color: rgba(255,255,255,.62);
+}
+.niche-brand i { font-style: normal; color: var(--gold); }
 .niche-bottle {
-  position: relative; z-index: 4; width: 68%; max-width: 200px; max-height: 78%;
+  position: relative; z-index: 4; width: 76%; max-width: 230px; max-height: 84%;
   object-fit: contain; transition: transform .6s cubic-bezier(.2,.8,.2,1), filter .5s;
   filter: drop-shadow(0 22px 22px rgba(0,0,0,.7))
           drop-shadow(0 0 26px color-mix(in srgb, var(--niche-color) 52%, transparent));
@@ -212,16 +219,16 @@ img, svg { display: block; }
 .hero-niche-column:focus-visible .niche-bottle { transform: translateY(-10px) scale(1.08); }
 .niche-label {
   position: absolute; bottom: 27px; left: 0; right: 0; z-index: 5; text-align: center;
-  font-size: 10px; font-weight: 700; letter-spacing: .23em; text-transform: uppercase;
-  color: color-mix(in srgb, var(--niche-color) 72%, white);
+  font-family: var(--serif); font-style: italic; font-size: 19px; letter-spacing: .02em;
+  color: color-mix(in srgb, var(--niche-color) 70%, white);
   text-shadow: 0 0 16px color-mix(in srgb, var(--niche-color) 55%, transparent);
   transition: letter-spacing .5s ease;
 }
-.hero-niche-column:hover .niche-label { letter-spacing: .32em; }
+.hero-niche-column:hover .niche-label { letter-spacing: .1em; }
 
 /* glossy black floor with a soft flipped reflection */
 .niche-reflection-slot {
-  position: relative; flex: 0 0 96px; height: 96px; overflow: hidden;
+  position: relative; flex: 0 0 112px; height: 112px; overflow: hidden;
   background: linear-gradient(180deg, #0e0c10 0%, #050506 55%, #0b090d 100%);
   border-top: 1px solid rgba(255,255,255,.14);
   box-shadow: inset 0 16px 26px rgba(0,0,0,.8), inset 0 -1px 0 rgba(255,255,255,.07);
@@ -232,18 +239,18 @@ img, svg { display: block; }
   background: linear-gradient(180deg, rgba(255,255,255,.07), transparent 42%);
 }
 .niche-reflection {
-  position: absolute; top: 0; left: 50%; width: 66%; max-width: 180px; height: 155px;
+  position: absolute; top: 0; left: 50%; width: 74%; max-width: 205px; height: 190px;
   object-fit: contain; transform: translateX(-50%) scaleY(-1);
-  opacity: .32; filter: blur(1.4px) saturate(.85);
+  opacity: .5; filter: blur(1.2px) saturate(.9);
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.9), transparent 92%);
   mask-image: linear-gradient(to bottom, rgba(0,0,0,.9), transparent 92%);
 }
-.hero-niche-column:hover .niche-reflection { opacity: .46; }
+.hero-niche-column:hover .niche-reflection { opacity: .68; }
 
 .hero-bottom {
   position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: flex-end;
-  gap: 50px; padding: 42px 0 58px;
-  background: linear-gradient(180deg, #09080b 0%, #0d0a10 100%);
+  gap: 50px; margin-top: -70px; padding: 78px 0 54px;
+  background: linear-gradient(180deg, rgba(9,8,11,0) 0%, rgba(9,8,11,.86) 42%, #0d0a10 88%);
 }
 .hero-bottom-copy { max-width: 780px; }
 .hero-title {
@@ -732,8 +739,14 @@ img, svg { display: block; }
   .main-nav.is-open { display: flex; }
   .nav-link { padding: 10px 0; }
   .menu-button { display: grid; place-items: center; }
-  .niche-row { height: 540px; }
-  .niche-bottle { width: 78%; }
+  .niche-row {
+    height: 620px; gap: 8px; padding: 8px 12%; overflow-x: auto; scroll-snap-type: x mandatory;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .niche-row::-webkit-scrollbar { display: none; }
+  .hero-niche-column { flex: 0 0 76%; scroll-snap-align: center; }
+  .niche-bottle { width: 70%; }
+  .hero-bottom { margin-top: -46px; padding-top: 62px; }
   .hero-bottom { gap: 24px; flex-direction: column; align-items: flex-start; }
   .hero-bottom-actions { align-items: flex-start; }
   .product-grid, .featured-row, .collection-grid, .related-section .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -755,12 +768,14 @@ img, svg { display: block; }
   .header-logo { width: 148px; }
   .header-actions { gap: 10px; }
   .lang-toggle { gap: 3px; font-size: 8px; }
-  .niche-row { height: 450px; }
-  .niche-index { top: 16px; left: 14px; font-size: 7px; }
-  .niche-label { bottom: 16px; font-size: 8px; letter-spacing: .12em; }
+  .niche-row { height: 540px; padding-inline: 9%; }
+  .hero-niche-column { flex-basis: 82%; }
+  .niche-index { top: 16px; right: 14px; font-size: 10px; }
+  .niche-brand { top: 17px; left: 14px; font-size: 7px; }
+  .niche-label { bottom: 16px; font-size: 16px; }
   .stone-niche::after { inset: 7px; }
-  .niche-reflection-slot { flex-basis: 64px; height: 64px; }
-  .niche-reflection { height: 110px; }
+  .niche-reflection-slot { flex-basis: 78px; height: 78px; }
+  .niche-reflection { height: 128px; }
   .hero-title { font-size: clamp(58px, 15vw, 82px); }
   .hero-bottom { padding: 34px 0 44px; }
   .section { padding: 70px 0; }
