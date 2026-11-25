@@ -6,69 +6,69 @@ import { MoodSelector } from '../components/MoodSelector';
 import { ProductCard } from '../components/ProductCard';
 import { useStore, useT } from '../store/StoreContext';
 
+const HERO_MOOD_IDS = ['mysterious', 'romantic', 'fresh', 'calm', 'bold'];
+
+const bottleImages: Record<string, string> = {
+  mysterious: '/images/bottles/mysterious.png',
+  romantic: '/images/bottles/romantic.png',
+  fresh: '/images/bottles/fresh.png',
+  calm: '/images/bottles/calm.png',
+  bold: '/images/bottles/bold.png',
+};
+
 export function Home() {
   const { moods, products } = useStore();
   const { t, language } = useT();
   const [selected, setSelected] = useState<string | null>(null);
   const featured = products.filter((p) => p.featured).slice(0, 5);
   const activeMood = moods.find((m) => m.id === selected);
+  const featuredMoods = HERO_MOOD_IDS.map((id) => moods.find((m) => m.id === id)).filter((m): m is NonNullable<typeof m> => Boolean(m));
+  const heroMoods = [...featuredMoods, ...moods.filter((m) => !featuredMoods.includes(m))].slice(0, 5);
 
   return (
     <>
       <section className="hero">
-        <div className="hero-ambient" />
-        <div className="shell hero-grid">
-          <div className="hero-copy">
-            <span className="eyebrow"><Sparkles size={13} /> {t('hero.eyebrow')}</span>
-            <h1 className="hero-title">
-              {t('hero.title1')}<br />
-              <em>{t('hero.title2')}</em>
-              <span className="hero-period">.</span>
-            </h1>
-            <p className="hero-body">{t('hero.body')}</p>
-            <div className="hero-actions">
-              <Link to="/collection" className="btn btn-gold">{t('hero.cta1')} <ArrowRight size={17} /></Link>
-              <a href="#mood-selector" className="btn btn-text">{t('hero.cta2')} <ArrowUpRight size={16} /></a>
-            </div>
-            <p className="hero-niche">{t('hero.niche')}</p>
-          </div>
-
-          <div className="hero-visual">
-            <div className="hero-halo" />
-            {[moods[4], moods[1], moods[3]].map((mood, index) => {
-              if (!mood) return null;
-              const product = products.find((p) => p.moodId === mood.id) ?? products[index];
-              if (!product) return null;
+        <div className="hero-gallery">
+          <div className="niche-row">
+            {heroMoods.map((mood, index) => {
+              const image = bottleImages[mood.id] ?? bottleImages.mysterious;
               return (
                 <Link
                   key={mood.id}
                   to={`/collection?mood=${mood.id}`}
-                  className={`hero-bottle hero-bottle-${index}`}
-                  style={{ '--hero-color': mood.color } as React.CSSProperties}
+                  className="hero-niche-column"
+                  style={{ '--niche-color': mood.color } as React.CSSProperties}
                   aria-label={`Shop ${mood.name} perfumes`}
                 >
-                  <Bottle color={mood.color} name={product.name} size={product.sizeMl} />
-                  <span className="hero-bottle-label">{language === 'bn' ? mood.nameBn : mood.name}</span>
+                  <div className="stone-niche">
+                    <span className="niche-spotlight" />
+                    <span className="niche-glow" />
+                    <span className="niche-index">N° 0{index + 1}</span>
+                    <img className="niche-bottle" src={image} alt={`${mood.name} perfume bottle`} />
+                    <span className="niche-label">{language === 'bn' ? mood.nameBn : mood.name}</span>
+                  </div>
+                  <div className="niche-reflection-slot">
+                    <img className="niche-reflection" src={image} alt="" aria-hidden="true" />
+                  </div>
                 </Link>
               );
             })}
-            <span className="hero-visual-caption">N° 01 — 07</span>
           </div>
-        </div>
 
-        <div className="shell mood-niches">
-          {moods.map((mood, i) => (
-            <Link
-              key={mood.id}
-              to={`/collection?mood=${mood.id}`}
-              className="mood-niche"
-              style={{ '--niche-color': mood.color } as React.CSSProperties}
-            >
-              <span className="niche-orb"><i /></span>
-              <span className="niche-number">0{i + 1}</span>
-              <span className="niche-name">{language === 'bn' ? mood.nameBn : mood.name}</span>
-            </Link>
-          ))}
+          <div className="shell hero-bottom">
+            <div className="hero-bottom-copy">
+              <span className="eyebrow"><Sparkles size={13} /> {t('hero.eyebrow')}</span>
+              <h1 className="hero-title">
+                {t('hero.title1')} <em>{t('hero.title2')}</em><span className="hero-period">.</span>
+              </h1>
+              <p className="hero-body">{t('hero.body')}</p>
+            </div>
+            <div className="hero-bottom-actions">
+              <Link to="/collection" className="btn btn-gold">{t('hero.cta1')} <ArrowRight size={17} /></Link>
+              <a href="#mood-selector" className="btn btn-text">{t('hero.cta2')} <ArrowUpRight size={16} /></a>
+              <p className="hero-niche">{t('hero.niche')}</p>
+            </div>
+          </div>
         </div>
       </section>
 
