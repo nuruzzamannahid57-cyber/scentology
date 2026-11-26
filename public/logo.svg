@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 106" fill="none" role="img" aria-label="Scentology BD">
+  <g fill="#d8b98a" font-family="Georgia, 'Times New Roman', serif">
+    <text x="0" y="60" font-size="61" textLength="336" lengthAdjust="spacingAndGlyphs">SCENTOLOGY</text>
+    <text x="344" y="38" font-size="21" letter-spacing="3">BD</text>
+    <text x="2" y="94" font-size="19" font-style="italic" letter-spacing="2.2" opacity=".88">Scented your mood</text>
+  </g>
+  <text x="348" y="60" fill="#d8b98a" opacity=".7" font-family="Arial, sans-serif" font-size="9" letter-spacing="1.6">EST. 2024</text>
+  <path d="M0 70H395" stroke="#d8b98a" stroke-opacity=".36" stroke-width=".8"/>
+</svg>
